@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>История</title></head>
+<body>
+<h2>Федерация Справедливых Тарифов</h2>
+<a href="/logout">Выйти</a><br><br>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    Загрузить новый Excel: <input type="file" name="excel">
+    <input type="submit" value="Загрузить">
+</form>
+<br>
+<table border=1>
+    <tr><th>Дата</th><th>Пользователь</th><th>Текущий</th><th>Новый</th><th>Подключение</th><th>Период</th><th>Окупаемость</th><th>Экономия</th><th>Действие</th></tr>
+    {% for r in records %}
+    <tr>
+        <td>{{ r.date }}</td><td>{{ r.user }}</td><td>{{ r.cur }}</td>
+        <td>{{ r.new }}</td><td>{{ r.cost }}</td><td>{{ r.period }}</td>
+        <td>{{ r.payback }}</td><td>{{ r.economy }}</td>
+        <td><a href="/edit/{{ r.id }}">Редактировать</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="/download">📥 Скачать Excel</a>
+</body>
+</html>
