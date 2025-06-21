@@ -5,6 +5,9 @@ import os
 import io
 from openpyxl import load_workbook
 
+
+port = ins(os.eviron.get("PORT", 8080))
+app.run(host="0.0.0.0" , port=port)
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///history.db'
