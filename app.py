@@ -7,8 +7,8 @@ from openpyxl import load_workbook
 
 
 port = int(os.environ.get("PORT", 8080))
-app.run(host="0.0.0.0" , port=port)
 app = Flask(__name__)
+app.run(host="0.0.0.0" , port=port)
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///history.db'
 db = SQLAlchemy(app)
