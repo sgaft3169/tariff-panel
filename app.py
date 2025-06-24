@@ -10,6 +10,14 @@ app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///history.db'
 db = SQLAlchemy(app)
 
+@app.route('/initdb')
+def initdb():
+    db.create_all()
+    if not User.query.filter_by(username='admin').first():
+        db.session.add(User(username='admin', password='1234'))
+        db.session.commit()
+    return 'База данных создана'
+    
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
