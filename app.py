@@ -95,7 +95,7 @@ def download():
     buf.seek(0)
     return send_file(buf, as_attachment=True, download_name='история.xlsx')
 
-if name == 'main':
+if __name__ == '__main__':
     if not os.path.exists('history.db'):
         db.create_all()
         db.session.add(User(username='admin', password='1234'))
