@@ -5,10 +5,7 @@ import os
 import io
 from openpyxl import load_workbook
 
-
-port = int(os.environ.get("PORT", 8080))
-app = Flask(__name__)
-app.run(host="0.0.0.0" , port=port)
+app = Flask(name)
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///history.db'
 db = SQLAlchemy(app)
@@ -98,9 +95,11 @@ def download():
     buf.seek(0)
     return send_file(buf, as_attachment=True, download_name='история.xlsx')
 
-if __name__ == '__main__':
+if name == 'main':
     if not os.path.exists('history.db'):
         db.create_all()
         db.session.add(User(username='admin', password='1234'))
         db.session.commit()
-    app.run(debug=True, port=8080)
+
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
